@@ -32,6 +32,23 @@ The cons of decision trees are:
 
 <br>
 
-Architecture overview:
+### Architecture overview:
 
+<p align="center">
+  <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/architectureDiagram.png">
+</p>
+
+#### Main steps:
+
+1. Create main Python application for creating vector database, handling queries, etc. (followed tutorial for this part.)
+2. **Populate the database** with the source PDF documents for the Chatbot to use. I used the AI Knowledge Base RDF graph string representation I created in one of my other projects: (AIKB)[https://github.com/jmsbutcher/AI-Knowledge-Base]
+3. **Create Docker** image for running the app on AWS.
+4. **Deploy the image** to AWS lambda using AWS CDK.
+5. **Set up Bedrock service on AWS** - I chose Meta's Llama 3 8B Instruct model due to its very low cost ($0.00022 per 1000 tokens) and its superior performance over Anthropic's comparable model Claude when I tested it.
+6. **Test the service** using my (AIKB)[https://github.com/jmsbutcher/AI-Knowledge-Base] project.
+
+### Usage
+
+
+   
 
