@@ -1,13 +1,13 @@
 # AWS RAG AI Service
 
-### An AWS Bedrock chatbot service that answers questions about my knowledge base using natural language.
+### An AWS Bedrock chatbot service that answers questions about my knowledge base with natural language.
 
 The purpose of this project was to learn how to deploy an AI service to to the cloud and use it from another web application.
 
 The main part of the work can be credited to Pixegami and his very helpful tutorial video https://www.youtube.com/watch?v=ldFONBo2CR0
 The original source code for the core of the application is located here: https://github.com/pixegami/deploy-rag-to-aws/tree/main
 
-It consists of a RAG application that allows you to ask questions about the information contained in specific PDF documents provided to it.
+It consists of a RAG application that allows you to ask questions about the information contained in a document.
 
 According to Google: "**RAG (Retrieval-Augmented Generation)** is an AI framework that combines the strengths of traditional information retrieval systems (such as search and databases) with the capabilities of generative large language models (LLMs)." (https://cloud.google.com/use-cases/retrieval-augmented-generation)
 
@@ -39,14 +39,11 @@ The cons of decision trees are:
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/architectureDiagram.png">
 </p>
-Adapted from pixegami - https://www.youtube.com/watch?v=ldFONBo2CR0
-
-<br>
 
 #### Main steps:
 
 1. Create main Python application for creating vector database, handling queries, etc. (followed tutorial for this part.)
-2. **Populate the database** with the source PDF documents for the Chatbot to use. I used the AI Knowledge Base RDF graph string representation I created in one of my other projects: (AIKB)[https://github.com/jmsbutcher/AI-Knowledge-Base]. This is the PRF document located in image/src/data/source/aikb.pdf.
+2. **Populate the database** with the source PDF documents for the Chatbot to use. I used the AI Knowledge Base RDF graph string representation I created in one of my other projects: (AIKB)[https://github.com/jmsbutcher/AI-Knowledge-Base]
 3. **Create Docker** image for running the app on AWS.
 4. **Deploy the image** to AWS Lambda using AWS CDK. AWS Lambda is a serverless architecture, meaning it only runs when it receives a request, allowing it to be very low cost.
 5. **Set up Bedrock service on AWS** - I chose Meta's Llama 3 8B Instruct model due to its very low cost ($0.00022 per 1000 tokens) and its superior performance over Anthropic's comparable model Claude when I tested it.
@@ -57,9 +54,6 @@ Adapted from pixegami - https://www.youtube.com/watch?v=ldFONBo2CR0
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/usageScreenshot.png">
 </p>
-Try it yourself: https://aikb-bfe2tw67tq-ue.a.run.app/query-rag
-
-<br>
 
 I put two files in the "exampleUsage" folder showing how I called the RAG service from another app.
 
@@ -84,37 +78,6 @@ In views.py, the 'query-rag' POST route is called when the user types a query in
 ```
 
 This submits the query to the model, which then begins crafting a response. The client app then waits for a response by checking the 'is_complete' field, and when it is complete it passes the answer text to the HTML template "query-rag.html" to be displayed on the webpage.
-
-```python
-#...
-
-        import time
-        GET_QUERY_URL = ROOT_URL + "get_query/"
-        is_complete = False
-        timeout_in_s = 120
-        time_in_s = 0
-
-        while not is_complete or time_in_s > timeout_in_s:
-            # Wait for answer
-            time.sleep(3)
-            time_in_s += 3
-            print("Waiting for answer...", time_in_s)
-
-            query_contents = {
-                "query_id": query_id
-            }
-
-            response = requests.get(GET_QUERY_URL, params = query_contents)
-
-            is_complete = response.json()["is_complete"]
-            if (is_complete):
-                answer = response.json()["answer_text"]
-            elif (time_in_s > timeout_in_s):
-                print("Timeout.")
-
-    # Pass all the values and results (if any) to the query template to be displayed
-    return render_template('query-rag.html', answer=answer)
-```
 
 ```html
 <form method="POST">
@@ -144,5 +107,4 @@ This submits the query to the model, which then begins crafting a response. The 
 ```
    
 10/12/24
-
 (c) James Butcher
