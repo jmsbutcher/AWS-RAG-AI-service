@@ -39,6 +39,7 @@ The cons of decision trees are:
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/architectureDiagram.png">
 </p>
+Adapted from pixegami - https://www.youtube.com/watch?v=ldFONBo2CR0
 
 #### Main steps:
 
@@ -54,6 +55,7 @@ The cons of decision trees are:
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/usageScreenshot.png">
 </p>
+Try it yourself: https://aikb-bfe2tw67tq-ue.a.run.app/query-rag
 
 I put two files in the "exampleUsage" folder showing how I called the RAG service from another app.
 
