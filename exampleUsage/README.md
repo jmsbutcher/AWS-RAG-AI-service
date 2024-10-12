@@ -23,11 +23,13 @@ and it would respond with something like:
 * Can deal with non-linear data
 * Creates good explanations
 * Interpretable
+  
 The cons of decision trees are:
 * Fails to deal with linear relationships without adding splits, which is inefficient
 * Lack of smoothness; slight changes in an input feature can have a big impact on the predicted outcome
 * Only easily interpretable when short
 * Unstable"
+  
 (This information was taken directly from the knowledge base I provided to it.)
 
 <br>
@@ -49,6 +51,26 @@ The cons of decision trees are:
 
 ### Usage
 
+I put two files in the "exampleUsage" folder showing how I called the RAG service from another app.
 
+In views.py, the 'query-rag' POST route is called when the user types a query into the entry box and clicks "Enter":
+
+'''
+    if request.method == 'POST':
+
+        # Get the question asked by the user
+        question = request.form.get('question')
+
+        #------------------------------------------------------------------------------
+        # Send submit query POST request to route "/docs/submit_query"
+        SUBMIT_QUERY_URL = ROOT_URL + "submit_query/"
+        query_contents = {
+            "query_text": question
+        }
+
+        response = requests.post(SUBMIT_QUERY_URL, json = query_contents)
+        query_id = response.json()["query_id"]
+        session["last_query_id"] = query_id
+'''
    
 
