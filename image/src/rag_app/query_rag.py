@@ -14,7 +14,8 @@ Answer the question based only on the following context:
 Answer the question based on the above context: {question}
 """
 
-BEDROCK_MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+#BEDROCK_MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0"
+BEDROCK_MODEL_ID = "meta.llama3-8b-instruct-v1:0"
 
 
 @dataclass

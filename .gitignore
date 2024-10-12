@@ -1,10 +1,15 @@
 *.pyc
+**/cdk.out
+**/node_modules
 **/chroma
 env/
 .env
+**/__pycache__
 
 # Some files generated for tutorial.
 original_reqs.txt
 filtered_reqs.txt
 pip_freeze.txt
 generate_reqs.py
+
+AboutThisFolder.txt

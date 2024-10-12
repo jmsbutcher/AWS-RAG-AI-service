@@ -72,3 +72,4 @@ if __name__ == "__main__":
     port = 8000
     print(f"Running the FastAPI server on port {port}.")
     uvicorn.run("app_api_handler:app", host="0.0.0.0", port=port)
+    #uvicorn.run("app_api_handler:app", host="127.0.0.1", port=port)
