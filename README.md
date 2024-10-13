@@ -2,7 +2,7 @@
 
 ### An AWS Bedrock chatbot service that answers questions about my knowledge base with natural language.
 
-*Try it here* --> https://aikb-bfe2tw67tq-ue.a.run.app/query-rag
+[Try it here](https://aikb-bfe2tw67tq-ue.a.run.app/query-rag)
 
 The purpose of this project was to learn how to deploy an AI service to to the cloud and use it from another web application.
 
@@ -46,18 +46,19 @@ Adapted from Pixegami https://www.youtube.com/watch?v=ldFONBo2CR0
 #### Main steps:
 
 1. Create main Python application for creating vector database, handling queries, etc. (followed tutorial for this part.)
-2. **Populate the database** with the source PDF documents for the Chatbot to use. I used the AI Knowledge Base RDF graph string representation I created in one of my other projects: (AIKB)[https://github.com/jmsbutcher/AI-Knowledge-Base]
+2. **Populate the database** with the source PDF documents for the Chatbot to use. I used the AI Knowledge Base RDF graph string representation I created in one of my other projects: [AIKB](https://github.com/jmsbutcher/AI-Knowledge-Base)
 3. **Create Docker** image for running the app on AWS.
 4. **Deploy the image** to AWS Lambda using AWS CDK. AWS Lambda is a serverless architecture, meaning it only runs when it receives a request, allowing it to be very low cost.
 5. **Set up Bedrock service on AWS** - I chose Meta's Llama 3 8B Instruct model due to its very low cost ($0.00022 per 1000 tokens) and its superior performance over Anthropic's comparable model Claude when I tested it.
-6. **Test the service** using my (AIKB)[https://github.com/jmsbutcher/AI-Knowledge-Base] project, a Flask app that queries the service using the requests library hosted on Google Cloud.
+6. **Test the service** using my [AIKB](https://github.com/jmsbutcher/AI-Knowledge-Base) project, a Flask app that queries the service using the requests library hosted on Google Cloud.
 
 ### Usage
 
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/usageScreenshot.png">
 </p>
-*Try it here* --> https://aikb-bfe2tw67tq-ue.a.run.app/query-rag
+
+[Try it here](https://aikb-bfe2tw67tq-ue.a.run.app/query-rag)
 
 I put two files in the "exampleUsage" folder showing how I called the RAG service from another app.
 
