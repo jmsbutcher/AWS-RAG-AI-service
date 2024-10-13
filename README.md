@@ -1,6 +1,6 @@
 # AWS RAG AI Service
 
-### An AWS Bedrock chatbot service that answers questions within the context a knowledge base using natural language.
+### An AWS Bedrock chatbot service that answers questions within the context of a knowledge base using natural language.
 
 [Try it here](https://aikb-bfe2tw67tq-ue.a.run.app/query-rag)
 
