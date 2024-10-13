@@ -39,6 +39,7 @@ The cons of decision trees are:
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/architectureDiagram.png">
 </p>
+Adapted from Pixegami https://www.youtube.com/watch?v=ldFONBo2CR0
 
 #### Main steps:
 
@@ -78,6 +79,49 @@ In views.py, the 'query-rag' POST route is called when the user types a query in
 ```
 
 This submits the query to the model, which then begins crafting a response. The client app then waits for a response by checking the 'is_complete' field, and when it is complete it passes the answer text to the HTML template "query-rag.html" to be displayed on the webpage.
+
+```python
+        # ...
+
+        import time
+        GET_QUERY_URL = ROOT_URL + "get_query/"
+        is_complete = False
+        timeout_in_s = 120
+        time_in_s = 0
+
+        while not is_complete or time_in_s > timeout_in_s:
+            # Wait for answer
+            time.sleep(3)
+            time_in_s += 3
+            print("Waiting for answer...", time_in_s)
+
+            query_contents = {
+                "query_id": query_id
+            }
+
+            response = requests.get(GET_QUERY_URL, params = query_contents)
+
+            is_complete = response.json()["is_complete"]
+            if (is_complete):
+                answer = response.json()["answer_text"]
+            elif (time_in_s > timeout_in_s):
+                print("Timeout.")
+                
+
+    elif session["last_query_id"] != "":
+        GET_QUERY_URL = ROOT_URL + "get_query/"
+        query_contents = {
+            "query_id": session["last_query_id"]
+        }
+        response = requests.get(GET_QUERY_URL, params = query_contents)
+        is_complete = response.json()["is_complete"]
+        if (is_complete):
+            answer = response.json()["answer_text"]
+
+
+    # Pass all the values and results (if any) to the query template to be displayed
+    return render_template('query-rag.html', answer=answer)
+```
 
 ```html
 <form method="POST">
