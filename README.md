@@ -2,6 +2,8 @@
 
 ### An AWS Bedrock chatbot service that answers questions about my knowledge base with natural language.
 
+*Try it here* --> https://aikb-bfe2tw67tq-ue.a.run.app/query-rag
+
 The purpose of this project was to learn how to deploy an AI service to to the cloud and use it from another web application.
 
 The main part of the work can be credited to Pixegami and his very helpful tutorial video https://www.youtube.com/watch?v=ldFONBo2CR0
@@ -55,6 +57,7 @@ Adapted from Pixegami https://www.youtube.com/watch?v=ldFONBo2CR0
 <p align="center">
   <img src="https://github.com/jmsbutcher/AWS-RAG-AI-service/blob/main/readmeImages/usageScreenshot.png">
 </p>
+*Try it here* --> https://aikb-bfe2tw67tq-ue.a.run.app/query-rag
 
 I put two files in the "exampleUsage" folder showing how I called the RAG service from another app.
 
